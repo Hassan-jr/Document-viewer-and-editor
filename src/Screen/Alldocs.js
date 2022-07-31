@@ -53,6 +53,12 @@ const Alldocs = () => {
   const [docs, setDocs] = useState([]);
  //const  docs = [];
   const path = dirs.SDCardDir;
+  async function name (){
+    console.log("ALL FILES");
+    await RNFetchBlob.fs.ls(`${path}/Download`).then(res=> console.log(res));
+  }
+name()
+  
 
   //  is dirs
   const isDirs = async (isdirpath )=> {
