@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, PermissionsAndroid, Image } from 'react-native'
 import React, {useState} from 'react'
-import DocumentScanner from 'react-native-document-scanner';
+//import DocumentScanner from 'react-native-document-scanner';
 
 const Scan = () => {
 
@@ -31,7 +31,7 @@ const Scan = () => {
     }
   };
 
-  requestCameraPermission();
+ // requestCameraPermission();
 
 const [state, setState] = useState({
   image: '',
@@ -46,7 +46,7 @@ const [state2, setState2] = useState({
   return (
     <View>
 
-    <DocumentScanner
+    {/* <DocumentScanner
       useBase64
       onPictureTaken={data =>setState({
         image: data.croppedImage,
@@ -62,8 +62,8 @@ const [state2, setState2] = useState({
       onRectangleDetect={({ stableCounter, lastDetectionType }) =>setState2({ stableCounter, lastDetectionType })}
       detectionCountBeforeCapture={5}
       detectionRefreshRateInMS={50}
-    />
-    <Image source={{ uri: `data:image/jpeg;base64,${state.image}`}} resizeMode="contain" />
+    /> */}
+    {/* <Image source={{ uri: `data:image/jpeg;base64,${state.image}`}} resizeMode="contain" /> */}
   </View>
   )
 }
