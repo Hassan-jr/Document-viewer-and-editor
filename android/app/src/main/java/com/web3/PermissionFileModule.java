@@ -1,3 +1,57 @@
+
+package com.web3;
+
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.UriPermission;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.ParcelFileDescriptor;
+import android.util.Base64;
+
+import android.os.AsyncTask;
+// mine
+// import android.support.annotation.NonNull;
+//  import android.support.annotation.Nullable;
+import android.widget.Toast;
+// end
+
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+// import androidx.documentfile.provider.DocumentFile;
+
+import com.facebook.react.bridge.ActivityEventListener;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+//import javax.annotation.NonNull;
+
 public class PermissionFileModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
     public PermissionFileModule(@Nullable ReactApplicationContext reactContext) {
