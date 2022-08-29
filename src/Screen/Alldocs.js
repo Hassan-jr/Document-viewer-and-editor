@@ -56,6 +56,7 @@ const Alldocs = () => {
   const [docs, setDocs] = useState([]);
   //const  docs = [];
   const path = dirs.SDCardDir;
+  const path2 = [`${path}/Download`, `${path}/Documents`];
 
   // ==================================================================================================================================
   // RNFetchBlob to get all files in a directory
@@ -85,27 +86,25 @@ const Alldocs = () => {
         if (result) {
           getdocs(`${path}/${item}`);
         } else {
-          if (
-            `${path}/${item}.slice((${path}/${item}.lastIndexOf(".") - 1 >>> 0) + 2)` ===
-            'pdf'
-          ) {
-            setDocs(prev => [...prev, `${path}/${item}`]);
+          const file = `${path}/${item}`;
+          if (file.slice(((file.lastIndexOf('.') - 1) >>> 0) + 2) === 'pdf') {
           }
+          setDocs(prev => [...prev, `${path}/${item}`]);
 
           // console.log(docs);
         }
       });
     });
   };
-  getdocs(path);
+  getdocs(path2);
 
   // *******************************************************************************************************************************************
-  async function random() {
-    await getdocs(path);
-    if (docs.length > 0) {
-      // console.log(docs);
-    }
-  }
+  // async function random() {
+  //   await getdocs(path);
+  //   if (docs.length > 0) {
+  //     // console.log(docs);
+  //   }
+  // }
   //  random()
 
   // end
@@ -120,7 +119,7 @@ const Alldocs = () => {
   }
   // ==================================================================================================================================
 
-  // console.log('TEST IMPORTATION', docs.length);
+  console.log('TEST IMPORTATION', docs);
 
   return (
     <View>

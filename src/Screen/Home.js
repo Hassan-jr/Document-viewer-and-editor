@@ -10,7 +10,7 @@ const Home = () => {
     if (Platform.Version >= 30) {
       await PermissionFile.checkAndGrantPermission(
         (err) => console.log(err),
-        (res) =>  console.log(res),
+        (res) =>  console.log("result form manage", res),
       );
     } else {
   console.log("not to show");
