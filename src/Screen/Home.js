@@ -1,10 +1,11 @@
-import {Text, View, Platform} from 'react-native';
+import { StyleSheet, Text, View, Platform} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {NativeModules} from 'react-native';
 var PermissionFile = NativeModules.PermissionFile;
 import * as RNFS from 'react-native-fs';
 import {useSelector, useDispatch} from 'react-redux';
 import {get_all} from '../redux/Actions/Main';
+
 
 const Home = () => {
   // const dispatch = useDispatch();
@@ -29,10 +30,11 @@ const Home = () => {
 
   name();
 
-  const backgroundStyle = 'tech dark:bg-slate-900';
+  
+  const backgroundStyle = "bg-neutral-300 dark:bg-slate-900"
   return (
     <View className={backgroundStyle}>
-      <Text className="text-5xl text-black dark:text-white tech">
+      <Text className="text-5xl text-black dark:text-white">
         Home 44444444444444444444444
       </Text>
     </View>
