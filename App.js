@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   useColorScheme,
   View,
@@ -19,7 +18,6 @@ import Store from './src/redux/Store.js';
 import * as RNFS from 'react-native-fs';
 
 import {
-  Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
@@ -33,11 +31,9 @@ import Recents from './src/Screen/Recents';
 import Scan from './src/Screen/Scan';
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  // const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const backgroundStyle = "bg-neutral-300 dark:bg-slate-900"
 
   const Tab = createBottomTabNavigator();
   // star =================================
@@ -68,8 +64,10 @@ const App: () => Node = () => {
   // stop========================================
 
   return (
+    
     <Provider store={Store}>
-      <NavigationContainer>
+     
+      <NavigationContainer >
         <Tab.Navigator
           screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
@@ -97,27 +95,12 @@ const App: () => Node = () => {
           <Tab.Screen name="Scan" component={Scan} />
         </Tab.Navigator>
       </NavigationContainer>
+     
     </Provider>
+   
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
+
 
 export default App;

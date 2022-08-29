@@ -5,4 +5,8 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  colors: {
+    'blue' : 'linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%)',
+  }  
+
 }

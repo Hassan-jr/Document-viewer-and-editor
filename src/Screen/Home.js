@@ -1,4 +1,4 @@
-import { Text, View, Platform} from 'react-native';
+import {Text, View, Platform} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {NativeModules} from 'react-native';
 var PermissionFile = NativeModules.PermissionFile;
@@ -28,9 +28,11 @@ const Home = () => {
   }
 
   name();
+
+  const backgroundStyle = 'tech dark:bg-slate-900';
   return (
-    <View>
-      <Text className="text-2xl text-black dark:text-white">
+    <View className={backgroundStyle}>
+      <Text className="text-5xl text-black dark:text-white tech">
         Home 44444444444444444444444
       </Text>
     </View>
