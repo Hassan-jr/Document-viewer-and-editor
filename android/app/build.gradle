@@ -257,6 +257,10 @@ android {
 }
 
 dependencies {
+// test
+ implementation 'androidx.annotation:annotation:1.1.0'
+// end
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
      //    rn fetch blob

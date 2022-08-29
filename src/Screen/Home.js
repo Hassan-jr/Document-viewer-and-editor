@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Platform } from 'react-native'
 import React from 'react'
 import {NativeModules} from 'react-native';
 var PermissionFile = NativeModules.PermissionFile;
+import * as RNFS from 'react-native-fs';
 
 const Home = () => {
 

@@ -13,6 +13,7 @@ import com.web3.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import com.RNFetchBlob.RNFetchBlobPackage; // rn fetch blob
+import managePermission.PermissionFilePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -30,7 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
             packages.add( new RNFetchBlobPackage());
-           packages.add(new PermissionFilePackage());
+            packages.add(new PermissionFilePackage());
           return packages;
         }
 

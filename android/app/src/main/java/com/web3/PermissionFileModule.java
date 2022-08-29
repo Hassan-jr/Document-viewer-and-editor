@@ -1,56 +1,29 @@
+package managePermission;
 
-package com.web3;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.UriPermission;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.os.ParcelFileDescriptor;
-import android.util.Base64;
-
-import android.os.AsyncTask;
-// mine
-// import android.support.annotation.NonNull;
-//  import android.support.annotation.Nullable;
+import android.content.pm.PackageManager;
+import android.content.Intent;
 import android.widget.Toast;
-// end
+import android.app.Activity;
+import android.net.Uri;
+import android.provider.Settings;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-// import androidx.documentfile.provider.DocumentFile;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import com.facebook.react.bridge.ActivityEventListener;
-import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.Promise;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.WritableArray;
-import com.facebook.react.bridge.WritableMap;
-import com.facebook.react.modules.core.DeviceEventManagerModule;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-//import javax.annotation.NonNull;
+import com.facebook.react.uimanager.IllegalViewOperationException;
 
 public class PermissionFileModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
@@ -80,7 +53,7 @@ public class PermissionFileModule extends ReactContextBaseJavaModule implements 
     }
 
     private boolean checkPermission() {
-        if (SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= 30) {
             return Environment.isExternalStorageManager();
         } else {
             int result = ContextCompat.checkSelfPermission(getReactApplicationContext(), READ_EXTERNAL_STORAGE);
@@ -90,7 +63,7 @@ public class PermissionFileModule extends ReactContextBaseJavaModule implements 
     }
 
     private void requestPermission() {
-        if (SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= 30) {
             try {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 intent.addCategory("android.intent.category.DEFAULT");
@@ -110,7 +83,7 @@ public class PermissionFileModule extends ReactContextBaseJavaModule implements 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         if (requestCode == 2296) {
-            if (SDK_INT >= Build.VERSION_CODES.R) {
+            if (Build.VERSION.SDK_INT >= 30) {
                 if (Environment.isExternalStorageManager()) {
                     Toast.makeText(getReactApplicationContext(), "Access granted", Toast.LENGTH_SHORT).show();
                 } else {
