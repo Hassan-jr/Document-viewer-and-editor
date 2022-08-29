@@ -114,7 +114,7 @@ const Alldocs = () => {
   if (requestStoragePermission()) {
     RNFS.readDir(RNFS.ExternalStorageDirectoryPath + '/Documents') // On Android, use "RNFS.DocumentDirectoryPath" (MainBundlePath is not defined)
       .then(result => {
-        // console.log('GOT RESULT', result);
+        console.log('GOT RESULT', result);
       });
   }
   // ==================================================================================================================================

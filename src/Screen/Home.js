@@ -1,42 +1,42 @@
-import { StyleSheet, Text, View, Platform } from 'react-native'
-import React, { useEffect, useState } from "react";
+import { Text, View, Platform} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {NativeModules} from 'react-native';
 var PermissionFile = NativeModules.PermissionFile;
 import * as RNFS from 'react-native-fs';
 import {useSelector, useDispatch} from 'react-redux';
-import {get_all} from "../redux/Actions/Main"
+import {get_all} from '../redux/Actions/Main';
 
 const Home = () => {
-
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(get_all());
+    // dispatch(get_all());
   }, []);
 
-  const data = useSelector((state) => state.Main.All);
-  console.log("DATA", data);
- 
+  // const data = useSelector((state) => state.Main.All);
+  // console.log("DATA", data);
 
-  async function name () {
+  async function name() {
     if (Platform.Version >= 30) {
       await PermissionFile.checkAndGrantPermission(
-        (err) => console.log(err),
-        (res) =>  console.log("result form manage", res),
+        err => console.log(err),
+        res => console.log('result form manage', res),
       );
     } else {
-  console.log("not to show");
+      console.log('not to show');
     }
   }
- 
-name()
+
+  name();
   return (
     <View>
-      <Text>Home</Text>
+      <Text className="text-2xl text-black dark:text-white">
+        Home 44444444444444444444444
+      </Text>
     </View>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
-const styles = StyleSheet.create({})
+// const styles = StyleSheet.create({});
