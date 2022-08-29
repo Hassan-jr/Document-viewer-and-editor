@@ -13,6 +13,8 @@ import {
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Provider} from 'react-redux';
+import Store from './src/redux/Store.js';
 
 import * as RNFS from 'react-native-fs';
 
@@ -42,7 +44,7 @@ const App: () => Node = () => {
 
   RNFS.readDir(RNFS.DownloadDirectoryPath) // On Android, use "RNFS.DocumentDirectoryPath" (MainBundlePath is not defined)
     .then(result => {
-     // console.log('GOT RESULT', result);
+      // console.log('GOT RESULT', result);
 
       // stat the first file
       return Promise.all([RNFS.stat(result[0].path), result[0].path]);
@@ -66,38 +68,36 @@ const App: () => Node = () => {
   // stop========================================
 
   return (
-    <NavigationContainer>
-     <Tab.Navigator
-      
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+    <Provider store={Store}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({route}) => ({
+            tabBarIcon: ({focused, color, size}) => {
+              let iconName;
 
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'home'
-              : 'home';
-          } else if (route.name === 'Alldocs') {
-            iconName = "document";
-          }else if (route.name === 'Recents') {
-            iconName = "bookmark";
-          }else if (route.name === 'Scan') {
-            iconName = "scan-sharp";
-          }
+              if (route.name === 'Home') {
+                iconName = focused ? 'home' : 'home';
+              } else if (route.name === 'Alldocs') {
+                iconName = 'document';
+              } else if (route.name === 'Recents') {
+                iconName = 'bookmark';
+              } else if (route.name === 'Scan') {
+                iconName = 'scan-sharp';
+              }
 
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-      })}
-     >
-       <Tab.Screen name="Home" component={Home} /> 
-       <Tab.Screen name="Alldocs" component={Alldocs} /> 
-       <Tab.Screen name="Recents" component={Recents} /> 
-       <Tab.Screen name="Scan" component={Scan} /> 
-     </Tab.Navigator>
-    </NavigationContainer>
+              // You can return any component that you like here!
+              return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+          })}>
+          <Tab.Screen name="Home" component={Home} />
+          <Tab.Screen name="Alldocs" component={Alldocs} />
+          <Tab.Screen name="Recents" component={Recents} />
+          <Tab.Screen name="Scan" component={Scan} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
